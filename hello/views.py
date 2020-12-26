@@ -9,4 +9,6 @@ def about(request):
     return HttpResponse('<h1 style="color:blue;text-align:center">about page</h1>')
 
 def greetings(request,username):
-    return HttpResponse(f'<h1 style="color:blue;text-align:center">hello {username} </h1>')
+    return render(request,"hello/greetings.html",{
+        "name":username
+    })
