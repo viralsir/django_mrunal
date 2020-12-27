@@ -1,9 +1,11 @@
 {% extends "task/layout.html" %}
 {% block content %}
     <h1> add task  </h1>
-    <form>
-        <input type="text" placeholder="new task">
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="task" placeholder="new task">
         <input type="submit" value="add">
 
     </form>
+    <a href="{% url 'task-home' %}">View Task</a>
 {% endblock %}

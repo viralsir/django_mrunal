@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 tasks=["check email","check balance","repair cycle"]
 
@@ -9,4 +9,7 @@ def home(request):
     })
 
 def add_task(request):
+    if request.method == 'POST':
+        tasks.append(request.POST["task"])
+        return redirect('task-home')
     return render(request,"task/addtask.html")
