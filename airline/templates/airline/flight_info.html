@@ -1,0 +1,11 @@
+{% extends "airline/layout.html" %}
+{% block body  %}
+    <h1> Flight - {{  flight.id }} Info</h1>
+    <ul>
+        <li> Origin : {{ flight.origin.city }}</li>
+        <li> Destionation : {{  flight.destions.city }}</li>
+        <li> Durations : {{ flight.durations }} </li>
+    </ul>
+
+    <a href="{% url 'ariline-home' %}"> flight List </a>
+{% endblock %}
