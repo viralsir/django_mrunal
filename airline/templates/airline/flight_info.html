@@ -1,11 +1,27 @@
 {% extends "airline/layout.html" %}
 {% block body  %}
     <h1> Flight - {{  flight.id }} Info</h1>
-    <ul>
-        <li> Origin : {{ flight.origin.city }}</li>
-        <li> Destionation : {{  flight.destions.city }}</li>
-        <li> Durations : {{ flight.durations }} </li>
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-primary"> Origin : {{ flight.origin.city }}</li>
+        <li class="list-group-item list-group-item-primary"> Destionation : {{  flight.destions.city }}</li>
+        <li class="list-group-item list-group-item-primary"> Durations : {{ flight.durations }} </li>
     </ul>
 
+    <h1> Passenger List :</h1>
+    <ul class="list-group">
+         {%  for passenger in passengers %}
+            <li class="list-group-item list-group-item-success" > {{ passenger }}</li>
+         {% endfor %}
+    </ul>
+    <h1> Non Passenger List </h1>
+    <form action="{% url 'flight-book' flight.id %}" method="post">
+        {% csrf_token %}
+        <select name="non_passenger" id="">
+            {% for passenger in non_passengers %}
+                <option value="{{ passenger.id }}">{{ passenger }}</option>
+            {% endfor %}
+        </select>
+        <input class="btn btn-outline-info" type="submit" value="book">
+    </form>
     <a href="{% url 'ariline-home' %}"> flight List </a>
 {% endblock %}
